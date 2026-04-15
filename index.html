@@ -14,20 +14,20 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Alinhamento fixo no topo */
+            align-items: flex-start;
             background: #000 url('fundo.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
         }
 
-        /* Container do Cartão - Posicionado na marca vermelha */
+        /* Container do Cartão - Na marca vermelha enviada */
         .card-container {
             position: relative;
             width: 320px;
             height: 460px;
             perspective: 1500px;
-            margin-top: 200px; /* Ajuste exato para ficar na marca vermelha */
+            margin-top: 205px; /* Ajuste conforme a marca vermelha */
         }
 
         .card-inner {
@@ -49,11 +49,11 @@
             height: 100%;
             backface-visibility: hidden;
             border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
             overflow: hidden;
         }
 
-        /* FRENTE */
+        /* FRENTE: cartao-aniversario.jpg */
         .face-front {
             background: #fff;
         }
@@ -65,11 +65,11 @@
             display: block;
         }
 
-        /* VERSO */
+        /* VERSO: Mensagens */
         .face-back {
             background: rgba(255, 255, 255, 0.98);
             transform: rotateY(180deg);
-            padding: 25px 20px;
+            padding: 20px 15px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -79,20 +79,21 @@
             font-family: 'Great Vibes', cursive;
             color: #b8860b;
             font-size: 2.2rem;
-            margin: 0 0 15px 0;
+            margin: 0 0 10px 0;
             text-align: center;
         }
 
         .mural-scroll {
             overflow-y: auto;
             flex-grow: 1;
-            padding-right: 8px;
+            padding-right: 10px;
+            text-align: left;
         }
 
         .friend-box {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f2f2f2;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .friend-name {
@@ -100,7 +101,7 @@
             color: #b8860b;
             font-size: 0.9rem;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .msg-text {
@@ -108,10 +109,11 @@
             color: #444;
             font-style: italic;
             margin: 0;
-            line-height: 1.4;
+            line-height: 1.5;
+            white-space: pre-line; /* Mantém as quebras de linha das mensagens */
         }
 
-        /* Scrollbar */
+        /* Scrollbar Dourada */
         .mural-scroll::-webkit-scrollbar { width: 4px; }
         .mural-scroll::-webkit-scrollbar-thumb { background: #b8860b; border-radius: 10px; }
 
@@ -138,13 +140,44 @@
                 <h2>Mensagens</h2>
                 
                 <div class="mural-scroll">
-                    <div class="friend-box"><span class="friend-name">Lorena</span><p class="msg-text">Aguardando mensagem...</p></div>
-                    <div class="friend-box"><span class="friend-name">João</span><p class="msg-text">Aguardando mensagem...</p></div>
-                    <div class="friend-box"><span class="friend-name">Erica</span><p class="msg-text">Aguardando mensagem...</p></div>
-                    <div class="friend-box"><span class="friend-name">Gilmara</span><p class="msg-text">Aguardando mensagem...</p></div>
-                    <div class="friend-box"><span class="friend-name">Pedro</span><p class="msg-text">Aguardando mensagem...</p></div>
-                    <div class="friend-box"><span class="friend-name">Darly</span><p class="msg-text">Aguardando mensagem...</p></div>
-                    <div class="friend-box"><span class="friend-name">Lilian</span><p class="msg-text">Aguardando mensagem...</p></div>
+                    <div class="friend-box">
+                        <span class="friend-name">Lilian</span>
+                        <p class="msg-text">Que este dia seja repleto de alegria, amor e momentos especiais. Desejo saúde, sucesso e muitos sonhos realizados. Aproveite cada instante ao lado de quem você ama. Parabéns pela vida e por toda a luz que você traz ao mundo! 🥳🎉</p>
+                    </div>
+
+                    <div class="friend-box">
+                        <span class="friend-name">Darly</span>
+                        <p class="msg-text">Parabéns, Jessica!
+                        Quero felicitar uma pessoa muito especial pelo seu dia incrível. Desejo que Deus te abençoe ainda mais, pois você já é uma pessoa muito abençoada. Que Ele te conceda muitas felicidades e que você possa curtir esse dia tão especial com as pessoas que mais te fazem feliz.
+                        Te amo, pessoa incrível!</p>
+                    </div>
+
+                    <div class="friend-box">
+                        <span class="friend-name">Lorena</span>
+                        <p class="msg-text">Jessiquinha do meu ❤️, passando aqui pra te desejar tudo de melhor nesse mundo! Muita felicidade, paz, saúde e realizações. Você é uma pessoa muito especial, com um jeitinho único que encanta todo mundo ao seu redor 🥹✨
+                        Sou muito grata por ter você como amiga de trabalho, de verdade! Tô morrendo de saudade das nossas conversas e dos nossos lanchinhos juntas 🥲💕
+                        Aproveita MUITO o seu dia, você merece tudo de mais lindo! Te adoro, viu? Beijo grande ❤️</p>
+                    </div>
+
+                    <div class="friend-box">
+                        <span class="friend-name">Erica</span>
+                        <p class="msg-text">Feliz aniversário, Jéssica 🤍
+                        Você é daquelas pessoas que a gente tem carinho fácil… doce, meiga, mas com uma atitude que mostra o quanto é forte por dentro. E é tão bonito ver isso em você.
+                        Que a vida te abrace nesse novo ciclo, te traga paz, alegrias simples e sonhos que vão se realizando no seu tempo. Aproveita muito o seu dia, você merece 🌷✨</p>
+                    </div>
+
+                    <div class="friend-box">
+                        <span class="friend-name">Gilmara Coelho</span>
+                        <p class="msg-text">Feliz aniversário! 🎉✨
+                        Hoje é um dia especial para celebrar alguém que faz toda a diferença na nossa vida. Seu carinho transforma o ambiente de trabalho em um lugar muito mais humano e acolhedor. Sou muito grata por ter você na minha vida! 💛
+                        Que seu novo ciclo venha cheio de conquistas e alegrias. Te amo, Deus abençoe! 🎂❤️🥳</p>
+                    </div>
+
+                    <div class="friend-box">
+                        <span class="friend-name">Divo</span>
+                        <p class="msg-text">Feliz aniversário! 🎉
+                        Muita saúde, sucesso e felicidade nesse novo ciclo. Que seja um ano cheio de conquistas e momentos bons. É muito bom poder trabalhar com você (às vezes), sua dedicação faz toda a diferença. Continue sendo essa pessoa incrível! Aproveite muito o seu dia, "vida"! 🥳</p>
+                    </div>
                 </div>
 
                 <div class="hint">Clique para voltar</div>
