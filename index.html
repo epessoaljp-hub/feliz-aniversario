@@ -14,20 +14,20 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Alinha pelo topo para controlar melhor o respiro */
+            align-items: flex-start; /* Alinhamento fixo no topo */
             background: #000 url('fundo.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
         }
 
-        /* Container do Cartão - Posicionado estrategicamente abaixo do texto do fundo */
+        /* Container do Cartão - Posicionado na marca vermelha */
         .card-container {
             position: relative;
             width: 320px;
             height: 460px;
             perspective: 1500px;
-            margin-top: 280px; /* Aumentei para empurrar o cartão bem abaixo do BIRTHDAY */
+            margin-top: 185px; /* Ajuste exato para ficar na marca vermelha */
         }
 
         .card-inner {
@@ -49,7 +49,7 @@
             height: 100%;
             backface-visibility: hidden;
             border-radius: 12px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             overflow: hidden;
         }
 
@@ -78,7 +78,7 @@
         h2 {
             font-family: 'Great Vibes', cursive;
             color: #b8860b;
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin: 0 0 15px 0;
             text-align: center;
         }
@@ -90,35 +90,35 @@
         }
 
         .friend-box {
-            margin-bottom: 12px;
-            padding-bottom: 8px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
             border-bottom: 1px solid #f2f2f2;
         }
 
         .friend-name {
             font-weight: 500;
             color: #b8860b;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .msg-text {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #444;
             font-style: italic;
             margin: 0;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
-        /* Scrollbar Style */
-        .mural-scroll::-webkit-scrollbar { width: 3px; }
+        /* Scrollbar */
+        .mural-scroll::-webkit-scrollbar { width: 4px; }
         .mural-scroll::-webkit-scrollbar-thumb { background: #b8860b; border-radius: 10px; }
 
         .hint {
             text-align: center;
-            font-size: 8px;
-            color: #999;
+            font-size: 9px;
+            color: #aaa;
             margin-top: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -138,13 +138,13 @@
                 <h2>Mensagens</h2>
                 
                 <div class="mural-scroll">
-                    <div class="friend-box"><span class="friend-name">Lorena</span><p class="msg-text">Você merece toda felicidade do mundo!</p></div>
-                    <div class="friend-box"><span class="friend-name">João</span><p class="msg-text">Parabéns por esse novo ciclo, muita luz!</p></div>
-                    <div class="friend-box"><span class="friend-name">Erica</span><p class="msg-text">Que seus sonhos se realizem sempre.</p></div>
-                    <div class="friend-box"><span class="friend-name">Gilmara</span><p class="msg-text">Felicidades hoje e sempre, aproveite seu dia!</p></div>
-                    <div class="friend-box"><span class="friend-name">Pedro</span><p class="msg-text">Tudo de bom nesse dia especial!</p></div>
-                    <div class="friend-box"><span class="friend-name">Darly</span><p class="msg-text">Muita saúde e muitas conquistas!</p></div>
-                    <div class="friend-box"><span class="friend-name">Lilian</span><p class="msg-text">Um brinde à sua vida! Parabéns!</p></div>
+                    <div class="friend-box"><span class="friend-name">Lorena</span><p class="msg-text">Aguardando mensagem...</p></div>
+                    <div class="friend-box"><span class="friend-name">João</span><p class="msg-text">Aguardando mensagem...</p></div>
+                    <div class="friend-box"><span class="friend-name">Erica</span><p class="msg-text">Aguardando mensagem...</p></div>
+                    <div class="friend-box"><span class="friend-name">Gilmara</span><p class="msg-text">Aguardando mensagem...</p></div>
+                    <div class="friend-box"><span class="friend-name">Pedro</span><p class="msg-text">Aguardando mensagem...</p></div>
+                    <div class="friend-box"><span class="friend-name">Darly</span><p class="msg-text">Aguardando mensagem...</p></div>
+                    <div class="friend-box"><span class="friend-name">Lilian</span><p class="msg-text">Aguardando mensagem...</p></div>
                 </div>
 
                 <div class="hint">Clique para voltar</div>
