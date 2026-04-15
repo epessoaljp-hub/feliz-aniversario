@@ -21,168 +21,144 @@
             overflow: hidden;
         }
 
-        /* Container Central */
-        .stage {
+        /* Container do Cartão - Ajustado para baixo */
+        .card-container {
             position: relative;
-            width: 350px;
+            width: 340px;
             height: 480px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            perspective: 1500px;
+            margin-top: 80px; /* Abaixei o cartão para não cobrir o texto do fundo */
         }
 
-        /* A Foto que vai sumir */
-        #photo-overlay {
+        /* O elemento que realmente gira */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        /* Classe que o JS vai alternar para girar e voltar */
+        .is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .face {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 10;
-            cursor: pointer;
-            transition: opacity 1.5s ease; /* Efeito de sumir aos poucos */
-            border-radius: 10px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-            border: 2px solid rgba(212, 175, 55, 0.3);
+            backface-visibility: hidden; /* Esconde o verso */
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
         }
 
-        #photo-overlay img {
+        /* FRENTE: cartao-aniversario.jpg */
+        .face-front {
+            background: #fff;
+        }
+
+        .face-front img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
+            display: block;
         }
 
-        /* Painel de Mensagens que vai aparecer */
-        #message-panel {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            padding: 30px;
+        /* VERSO: Mensagens */
+        .face-back {
+            background: rgba(255, 255, 255, 0.98);
+            transform: rotateY(180deg); /* Já começa virado no eixo 3D */
+            padding: 30px 20px;
             box-sizing: border-box;
-            opacity: 0; /* Começa invisível */
-            transition: opacity 1.5s ease;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-            text-align: center;
         }
 
         h2 {
             font-family: 'Great Vibes', cursive;
             color: #b8860b;
-            font-size: 2.5rem;
-            margin: 0 0 20px 0;
+            font-size: 2.2rem;
+            margin: 0 0 15px 0;
+            text-align: center;
         }
 
-        .mural {
-            text-align: left;
+        .mural-scroll {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 5px;
         }
 
-        .friend-msg {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+        .friend-box {
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .friend-name {
             font-weight: 500;
             color: #b8860b;
+            font-size: 0.85rem;
             display: block;
-            font-size: 0.9rem;
-            margin-bottom: 3px;
         }
 
-        .text {
-            font-size: 0.85rem;
+        .msg-text {
+            font-size: 0.8rem;
             color: #555;
             font-style: italic;
-            line-height: 1.4;
+            margin: 2px 0 0 0;
         }
 
-        /* Classe para ativar a transição */
-        .reveal #photo-overlay {
-            opacity: 0;
-            pointer-events: none;
-        }
+        /* Scrollbar Dourada */
+        .mural-scroll::-webkit-scrollbar { width: 4px; }
+        .mural-scroll::-webkit-scrollbar-thumb { background: #b8860b; border-radius: 10px; }
 
-        .reveal #message-panel {
-            opacity: 1;
+        .hint {
+            text-align: center;
+            font-size: 9px;
+            color: #aaa;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        /* Custom Scrollbar */
-        #message-panel::-webkit-scrollbar {
-            width: 5px;
-        }
-        #message-panel::-webkit-scrollbar-thumb {
-            background: #b8860b;
-            border-radius: 10px;
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="stage" id="mainStage">
-        
-        <div id="photo-overlay">
-            <img src="cartao-aniversario.jpg" alt="Clique para ver as mensagens">
-            <div style="position: absolute; bottom: 10px; width: 100%; text-align: center; color: white; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 1px 1px 2px black;">
-                Clique na foto
-            </div>
-        </div>
-
-        <div id="message-panel">
-            <h2>Mensagens</h2>
+    <div class="card-container">
+        <div class="card-inner" id="flipCard">
             
-            <div class="mural">
-                <div class="friend-msg">
-                    <span class="friend-name">Lorena</span>
-                    <p class="text">Sua mensagem aqui...</p>
-                </div>
-
-                <div class="friend-msg">
-                    <span class="friend-name">João</span>
-                    <p class="text">Sua mensagem aqui...</p>
-                </div>
-
-                <div class="friend-msg">
-                    <span class="friend-name">Erica</span>
-                    <p class="text">Sua mensagem aqui...</p>
-                </div>
-
-                <div class="friend-msg">
-                    <span class="friend-name">Gilmara</span>
-                    <p class="text">Sua mensagem aqui...</p>
-                </div>
-
-                <div class="friend-msg">
-                    <span class="friend-name">Pedro</span>
-                    <p class="text">Sua mensagem aqui...</p>
-                </div>
-
-                <div class="friend-msg">
-                    <span class="friend-name">Darly</span>
-                    <p class="text">Sua mensagem aqui...</p>
-                </div>
-
-                <div class="friend-msg">
-                    <span class="friend-name">Lilian</span>
-                    <p class="text">Sua mensagem aqui...</p>
-                </div>
+            <div class="face face-front">
+                <img src="cartao-aniversario.jpg" alt="Foto Jéssica">
             </div>
 
-            <p style="font-size: 12px; margin-top: 20px; color: #999;">Com amor, todos nós! ❤️</p>
-        </div>
+            <div class="face face-back">
+                <h2>Mensagens</h2>
+                
+                <div class="mural-scroll">
+                    <div class="friend-box"><span class="friend-name">Lorena</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                    <div class="friend-box"><span class="friend-name">João</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                    <div class="friend-box"><span class="friend-name">Erica</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                    <div class="friend-box"><span class="friend-name">Gilmara</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                    <div class="friend-box"><span class="friend-name">Pedro</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                    <div class="friend-box"><span class="friend-name">Darly</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                    <div class="friend-box"><span class="friend-name">Lilian</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                </div>
 
+                <div class="hint">Clique para voltar</div>
+            </div>
+
+        </div>
     </div>
 
     <script>
-        const stage = document.getElementById('mainStage');
-        const photo = document.getElementById('photo-overlay');
-
-        photo.addEventListener('click', () => {
-            stage.classList.add('reveal');
+        const flipCard = document.getElementById('flipCard');
+        
+        // Agora o clique alterna (toggle) a classe, permitindo ir e voltar
+        flipCard.addEventListener('click', () => {
+            flipCard.classList.toggle('is-flipped');
         });
     </script>
 
