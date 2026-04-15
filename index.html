@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns Jéssica Luana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rose-gold: #e5b0a3;
+            --overlay: rgba(255, 255, 255, 0.2);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            /* O fundo será a imagem decorativa que você anexar */
+            background: url('cartao-aniversario.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Container Principal */
+        .card-wrapper {
+            width: 380px;
+            height: 550px;
+            perspective: 1500px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border-radius: 20px;
+        }
+
+        /* Classe que o JS vai ativar */
+        .is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            background: rgba(255, 250, 248, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+            border: 1px solid var(--overlay);
+        }
+
+        /* --- FRENTE --- */
+        .card-front .photo-frame {
+            width: 100%;
+            height: 300px;
+            background: #fff;
+            padding: 10px;
+            padding-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            margin-bottom: 25px;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name-highlight {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: var(--rose-gold);
+            margin: 10px 0 5px 0;
+        }
+
+        .sub-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.4;
+        }
+
+        /* --- VERSO --- */
+        .card-back {
+            transform: rotateY(180deg);
+            justify-content: center;
+            text-align: center;
+        }
+
+        .card-back h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--rose-gold);
+            margin-bottom: 20px;
+        }
+
+        .message-content {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .click-info {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #bbb;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card-wrapper">
+        <div class="card-inner" id="card">
+            
+            <div class="card-face card-front">
+                <div class="photo-frame">
+                    <img src="foto-aniversariante.jpg" alt="Jéssica Luana">
+                </div>
+                <h1 class="name-highlight">Jéssica Luana</h1>
+                <p class="sub-text">
+                    Que este dia seja tão especial quanto você, repleto de alegria, amor e sorrisos.
+                </p>
+                <div class="click-info">Toque para abrir</div>
+            </div>
+
+            <div class="card-face card-back">
+                <h2>Mensagem Especial</h2>
+                <div class="message-content">
+                    "Você ilumina o mundo com o seu sorriso!<br>
+                    Que este novo ciclo traga saúde,<br>
+                    paz e muitas conquistas.<br>
+                    Estamos todos torcendo por você!"
+                </div>
+                <p style="margin-top: 30px; font-weight: bold; color: var(--rose-gold);">Com carinho, seus amigos.</p>
+                <div class="click-info">Toque para voltar</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('card');
+        card.addEventListener('click', () => {
+            card.classList.toggle('is-flipped');
+        });
+    </script>
+
+</body>
+</html>
