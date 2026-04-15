@@ -14,23 +14,22 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Alinha pelo topo para controlar melhor o respiro */
             background: #000 url('fundo.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
         }
 
-        /* Container do Cartão - Ajustado para baixo */
+        /* Container do Cartão - Posicionado estrategicamente abaixo do texto do fundo */
         .card-container {
             position: relative;
-            width: 340px;
-            height: 480px;
+            width: 320px;
+            height: 460px;
             perspective: 1500px;
-            margin-top: 80px; /* Abaixei o cartão para não cobrir o texto do fundo */
+            margin-top: 280px; /* Aumentei para empurrar o cartão bem abaixo do BIRTHDAY */
         }
 
-        /* O elemento que realmente gira */
         .card-inner {
             position: relative;
             width: 100%;
@@ -40,7 +39,6 @@
             cursor: pointer;
         }
 
-        /* Classe que o JS vai alternar para girar e voltar */
         .is-flipped {
             transform: rotateY(180deg);
         }
@@ -49,13 +47,13 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* Esconde o verso */
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            backface-visibility: hidden;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
             overflow: hidden;
         }
 
-        /* FRENTE: cartao-aniversario.jpg */
+        /* FRENTE */
         .face-front {
             background: #fff;
         }
@@ -67,11 +65,11 @@
             display: block;
         }
 
-        /* VERSO: Mensagens */
+        /* VERSO */
         .face-back {
             background: rgba(255, 255, 255, 0.98);
-            transform: rotateY(180deg); /* Já começa virado no eixo 3D */
-            padding: 30px 20px;
+            transform: rotateY(180deg);
+            padding: 25px 20px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -80,7 +78,7 @@
         h2 {
             font-family: 'Great Vibes', cursive;
             color: #b8860b;
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin: 0 0 15px 0;
             text-align: center;
         }
@@ -88,40 +86,42 @@
         .mural-scroll {
             overflow-y: auto;
             flex-grow: 1;
-            padding-right: 5px;
+            padding-right: 8px;
         }
 
         .friend-box {
             margin-bottom: 12px;
             padding-bottom: 8px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f2f2f2;
         }
 
         .friend-name {
             font-weight: 500;
             color: #b8860b;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: block;
+            margin-bottom: 2px;
         }
 
         .msg-text {
-            font-size: 0.8rem;
-            color: #555;
+            font-size: 0.75rem;
+            color: #444;
             font-style: italic;
-            margin: 2px 0 0 0;
+            margin: 0;
+            line-height: 1.3;
         }
 
-        /* Scrollbar Dourada */
-        .mural-scroll::-webkit-scrollbar { width: 4px; }
+        /* Scrollbar Style */
+        .mural-scroll::-webkit-scrollbar { width: 3px; }
         .mural-scroll::-webkit-scrollbar-thumb { background: #b8860b; border-radius: 10px; }
 
         .hint {
             text-align: center;
-            font-size: 9px;
-            color: #aaa;
+            font-size: 8px;
+            color: #999;
             margin-top: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
     </style>
 </head>
@@ -131,20 +131,20 @@
         <div class="card-inner" id="flipCard">
             
             <div class="face face-front">
-                <img src="cartao-aniversario.jpg" alt="Foto Jéssica">
+                <img src="cartao-aniversario.jpg" alt="Foto Jéssica Luana">
             </div>
 
             <div class="face face-back">
                 <h2>Mensagens</h2>
                 
                 <div class="mural-scroll">
-                    <div class="friend-box"><span class="friend-name">Lorena</span><p class="msg-text">Sua mensagem aqui...</p></div>
-                    <div class="friend-box"><span class="friend-name">João</span><p class="msg-text">Sua mensagem aqui...</p></div>
-                    <div class="friend-box"><span class="friend-name">Erica</span><p class="msg-text">Sua mensagem aqui...</p></div>
-                    <div class="friend-box"><span class="friend-name">Gilmara</span><p class="msg-text">Sua mensagem aqui...</p></div>
-                    <div class="friend-box"><span class="friend-name">Pedro</span><p class="msg-text">Sua mensagem aqui...</p></div>
-                    <div class="friend-box"><span class="friend-name">Darly</span><p class="msg-text">Sua mensagem aqui...</p></div>
-                    <div class="friend-box"><span class="friend-name">Lilian</span><p class="msg-text">Sua mensagem aqui...</p></div>
+                    <div class="friend-box"><span class="friend-name">Lorena</span><p class="msg-text">Você merece toda felicidade do mundo!</p></div>
+                    <div class="friend-box"><span class="friend-name">João</span><p class="msg-text">Parabéns por esse novo ciclo, muita luz!</p></div>
+                    <div class="friend-box"><span class="friend-name">Erica</span><p class="msg-text">Que seus sonhos se realizem sempre.</p></div>
+                    <div class="friend-box"><span class="friend-name">Gilmara</span><p class="msg-text">Felicidades hoje e sempre, aproveite seu dia!</p></div>
+                    <div class="friend-box"><span class="friend-name">Pedro</span><p class="msg-text">Tudo de bom nesse dia especial!</p></div>
+                    <div class="friend-box"><span class="friend-name">Darly</span><p class="msg-text">Muita saúde e muitas conquistas!</p></div>
+                    <div class="friend-box"><span class="friend-name">Lilian</span><p class="msg-text">Um brinde à sua vida! Parabéns!</p></div>
                 </div>
 
                 <div class="hint">Clique para voltar</div>
@@ -155,8 +155,6 @@
 
     <script>
         const flipCard = document.getElementById('flipCard');
-        
-        // Agora o clique alterna (toggle) a classe, permitindo ir e voltar
         flipCard.addEventListener('click', () => {
             flipCard.classList.toggle('is-flipped');
         });
