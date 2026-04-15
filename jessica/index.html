@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural de Aniversariantes</title>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --bg-gradient: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            /* Decorações de fundo */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 2%, transparent 2%),
+                radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 2%, transparent 2%);
+            background-size: 100px 100px;
+        }
+
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Container dos cartões */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Estrutura do Card 3D */
+        .card-container {
+            perspective: 1000px;
+            height: 350px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-radius: 15px;
+        }
+
+        .card-container.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Lados do Cartão */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 5px solid white;
+        }
+
+        /* Frente: Foto e Decoração */
+        .card-front {
+            background-color: #fff;
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name-tag {
+            position: absolute;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            padding: 10px 0;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Verso: Mensagem */
+        .card-back {
+            background-color: #fff;
+            transform: rotateY(180deg);
+            padding: 20px;
+            box-sizing: border-box;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Textura leve */
+        }
+
+        .card-back h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .card-back p {
+            font-style: italic;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .decor {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎈 Feliz Aniversário! 🎂</h1>
+
+    <div class="grid-container" id="mural">
+        </div>
+
+    <script>
+        // Dados das 10 pessoas
+        const pessoas = [
+            { nome: "Ana Silva", msg: "Que seu dia seja repleto de luz e alegrias!", img: "https://picsum.photos/300/400?random=1" },
+            { nome: "Bruno Costa", msg: "Muita saúde, paz e conquistas neste novo ciclo.", img: "https://picsum.photos/300/400?random=2" },
+            { nome: "Carla Souza", msg: "Parabéns por ser essa pessoa incrível. Aproveite seu dia!", img: "https://picsum.photos/300/400?random=3" },
+            { nome: "Daniel Oliveira", msg: "Sucesso hoje e sempre! Feliz aniversário.", img: "https://picsum.photos/300/400?random=4" },
+            { nome: "Fernanda Lima", msg: "Que todos os seus sonhos se realizem. Parabéns!", img: "https://picsum.photos/300/400?random=5" },
+            { nome: "Gabriel Santos", msg: "Felicidades! Que a vida te sorria sempre.", img: "https://picsum.photos/300/400?random=6" },
+            { nome: "Helena Rocha", msg: "Um brinde à sua vida e à sua felicidade!", img: "https://picsum.photos/300/400?random=7" },
+            { nome: "Igor Mendes", msg: "Curta cada momento deste dia especial. Parabéns!", img: "https://picsum.photos/300/400?random=8" },
+            { nome: "Juliana Alves", msg: "Você merece o mundo! Feliz aniversário.", img: "https://picsum.photos/300/400?random=9" },
+            { nome: "Lucas Pereira", msg: "Tudo de bom hoje e sempre, meu amigo!", img: "https://picsum.photos/300/400?random=10" }
+        ];
+
+        const mural = document.getElementById('mural');
+
+        // Gerar os cartões dinamicamente
+        pessoas.forEach(p => {
+            const cardHtml = `
+                <div class="card-container" onclick="this.classList.toggle('is-flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="${p.img}" alt="${p.nome}">
+                            <div class="name-tag">${p.nome}</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="decor">🎁</div>
+                            <h3>Para: ${p.nome}</h3>
+                            <p>"${p.msg}"</p>
+                            <div style="margin-top:15px; font-size: 0.8rem; color: #999;">Clique para voltar</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            mural.innerHTML += cardHtml;
+        });
+    </script>
+</body>
+</html>
